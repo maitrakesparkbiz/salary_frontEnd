@@ -22,7 +22,7 @@
            <strong><em>Item:</em></strong> 
         </div> 
         <div class="col" style="text-align: left;"> 
-          <input type="text" name="item_name" id="item_name" [attr.disabled]="canEdit?null:''" formControlName='item_name'>
+          <input class="form-control" style="width: 50%;"  type="text" name="item_name" id="item_name" [attr.disabled]="canEdit?null:''" formControlName='item_name'>
         </div>
         </div> 
         <div class="row"> 
@@ -30,7 +30,7 @@
            <strong><em>Amount:</em></strong> 
         </div> 
         <div class="col" style="text-align: left;"> 
-          <input type="text" name="price" id="price" [attr.disabled]="canEdit?null:''" formControlName='price'>
+          <input class="form-control" style="width: 50%;" type="text" name="price" id="price" [attr.disabled]="canEdit?null:''" formControlName='price'>
         </div> 
         </div> 
         <div class="row"> 
@@ -38,7 +38,7 @@
            <strong><em>Category:</em></strong> 
         </div> 
         <div class="col" style="text-align: left;"> 
-          <select name="category" id="category" formControlName='category' >
+          <select class="form-control" style="width: 50%;" name="category" id="category" formControlName='category' >
             <option *ngFor="let category of CategoryList" [attr.disabled]="canEdit?null:''" [value]="category.id">
               {{category.name}}
             </option>
@@ -50,7 +50,7 @@
            <strong><em>Location:</em></strong>
         </div> 
         <div class="col" style="text-align: left;"> 
-          <input type="text" name="location" id="location" [attr.disabled]="canEdit?null:''" formControlName='location'>
+          <input class="form-control" style="width: 50%;" type="text" name="location" id="location" [attr.disabled]="canEdit?null:''" formControlName='location'>
         </div> 
         </div> 
         <div class="row"> 
@@ -58,7 +58,7 @@
            <strong><em>Spend On:</em></strong> 
         </div> 
         <div class="col" style="text-align: left;"> 
-           <input type="date" name="spend_on" id="spend_on" [attr.disabled]="canEdit?null:''" formControlName='spend_on'> 
+           <input class="form-control" style="width: 50%;" type="date" name="spend_on" id="spend_on" [attr.disabled]="canEdit?null:''" formControlName='spend_on'> 
         </div> 
         </div> 
      </div> 

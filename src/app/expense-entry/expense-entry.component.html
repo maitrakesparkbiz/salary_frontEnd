@@ -1,8 +1,8 @@
 <!-- Page Content --> 
 <div class="container"> 
-  <div class="row"> 
+  <div class="col-lg-12 text-center" style="width: 100%;"> 
    <form [formGroup]="date" method="post">
-      <table>
+      <table style="width: 100%;"> 
          <tr>
             <td>
                From Date
@@ -10,14 +10,21 @@
             <td>
                <input type="date" name="fromDate" id="fromDate" formControlName="fromDate">
             </td>
+            </tr>
+            <tr>
             <td>
                To Date
             </td>
             <td>
                <input type="date" name="toDate" id="toDate" formControlName="toDate">
             </td>
-            <td>
-               <button  (click)="onSubmit()" class="btn btn-primary" [disabled]='date.invalid' >Submit</button>
+            </tr>
+            <tr >
+            <td colspan="2">
+               <div >
+                  <button  (click)="onSubmit()" class="btn btn-primary" [disabled]='date.invalid' >Submit</button>
+
+               </div>
 
             </td>
          </tr>
@@ -41,7 +48,7 @@
                {{data.item_name}}
             </td>
             <td *ngIf="data.category.id!=4 else isLogOut">
-             <div style="background-color: red;" id="credit">
+             <div style="background-color: red;">
                {{data.price}}
              </div> 
             </td>

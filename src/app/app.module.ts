@@ -13,6 +13,7 @@ import { AddExpenseComponent } from './add-expense/add-expense.component';
 import {  RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryComponent } from './category/category.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { CategoryComponent } from './category/category.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    DataTablesModule
     
   ],
   providers: [],

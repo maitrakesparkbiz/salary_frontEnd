@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ExpenseEntryService } from '../expense-entry.service';
 
@@ -11,8 +11,8 @@ import { ExpenseEntryService } from '../expense-entry.service';
 })
 export class ExpenseEntryComponent implements OnInit {
   ExpenseID!:number;
-  date!: FormGroup;
-  constructor(private expenseEntryService:ExpenseEntryService, private activatedRoute: ActivatedRoute,private fb: FormBuilder) { }
+  date!: UntypedFormGroup;
+  constructor(private expenseEntryService:ExpenseEntryService, private activatedRoute: ActivatedRoute,private fb: UntypedFormBuilder) { }
   title: string | undefined;
   editButtonString:String | undefined;
   ExpenseList!: any;

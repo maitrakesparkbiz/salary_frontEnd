@@ -11,13 +11,11 @@
            </div> 
         </div> 
         <div class="container box" style="margin-top: 10px;"> 
-           <table class="table table-striped"> 
+           <table datatable [dtOptions]="dtOptions"   datatable="ng" class="hover" *ngIf="ExpenseList.length" style="width: 80%;"> 
               <thead> 
                  <tr> 
                     <th>Item</th> 
                     <th>Amount</th> 
-                    <th>Category</th> 
-                    <th>Location</th> 
                     <th>Spent On</th> 
                     <td >Action</td>
                  </tr> 
@@ -25,8 +23,6 @@
               <tbody> 
                  <tr *ngFor="let expense of ExpenseList"> 
                   <td>{{expense.item_name}}</td>
-                  <td>{{expense.price}}</td>
-                  <td>{{expense.category['name']}}</td>
                   <td>{{expense.location}}</td>
                   <td>{{expense.spend_on}}</td>
                   

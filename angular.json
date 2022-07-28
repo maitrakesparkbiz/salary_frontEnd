@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -26,12 +29,16 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [ 
-              "./node_modules/bootstrap/dist/css/bootstrap.css", "src/styles.css" 
-           ], 
-           "scripts": [ 
-              "./node_modules/jquery/dist/jquery.js", "./node_modules/bootstrap/dist/js/bootstrap.js" 
-           ] 
+            "styles": [
+              "src/styles.css",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+            "node_modules/jquery/dist/jquery.js",
+            "node_modules/datatables.net/js/jquery.dataTables.js",
+            "node_modules/bootstrap/dist/js/bootstrap.js"
+            ] 
           },
           "configurations": {
             "production": {
@@ -103,6 +110,5 @@
         }
       }
     }
-  },
-  "defaultProject": "expense-manager"
+  }
 }

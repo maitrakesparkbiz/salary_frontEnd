@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ExpenseEntryService } from '../expense-entry.service';
 
@@ -10,8 +10,8 @@ import { ExpenseEntryService } from '../expense-entry.service';
 })
 export class CategoryComponent implements OnInit {
 
-  categoryName!:FormGroup
-  constructor(private router: Router,private expenseEntryService:ExpenseEntryService,private fb:FormBuilder,) { }
+  categoryName!:UntypedFormGroup
+  constructor(private router: Router,private expenseEntryService:ExpenseEntryService,private fb:UntypedFormBuilder,) { }
 
   ngOnInit(): void {
     this.categoryName = this.fb.group({

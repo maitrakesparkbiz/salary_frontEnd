@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ExpenseEntryService } from '../expense-entry.service';
 
@@ -11,12 +11,12 @@ import { ExpenseEntryService } from '../expense-entry.service';
 })
 export class AddExpenseComponent implements OnInit {
   ExpenseID!:number;
-  Expense!: FormGroup;
+  Expense!: UntypedFormGroup;
   CategoryList!:any;
   editButtonString!:String
   Data!:any;
   canEdit!:boolean;
-  constructor(private router: Router, private route: ActivatedRoute,private fb: FormBuilder,private expenseEntryService:ExpenseEntryService,private activatedRoute: ActivatedRoute){
+  constructor(private router: Router, private route: ActivatedRoute,private fb: UntypedFormBuilder,private expenseEntryService:ExpenseEntryService,private activatedRoute: ActivatedRoute){
     this.activatedRoute.params.subscribe((url) => {
       this.ExpenseID =url['id'];
       
