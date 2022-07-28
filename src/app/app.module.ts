@@ -14,6 +14,7 @@ import {  RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryComponent } from './category/category.component';
 import { DataTablesModule } from 'angular-datatables';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { DataTablesModule } from 'angular-datatables';
     CustomPipePipe,
     AddExpenseComponent,
     CategoryComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
