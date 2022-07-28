@@ -1,0 +1,44 @@
+<div class="container"> 
+  <div class="row"> 
+     <div class="col-lg-12 text-center" style="padding-top: 20px;">
+        <div class="container" style="padding-left: 0px; padding-right: 0px;"> 
+           <div class="row"> 
+              <div class="col-sm" style="text-align: left;"> 
+              </div> 
+              <div class="col-sm" style="text-align: right;"> 
+                 <!-- <button type="button" class="btn btn-success">Add</button>  -->
+              </div> 
+           </div> 
+        </div> 
+        <div class="container box" style="margin-top: 10px;"> 
+           <table class="table table-striped"> 
+              <thead> 
+                 <tr> 
+                    <th>Item</th> 
+                    <th>Amount</th> 
+                    <th>Category</th> 
+                    <th>Location</th> 
+                    <th>Spent On</th> 
+                    <td >Action</td>
+                 </tr> 
+              </thead> 
+              <tbody> 
+                 <tr *ngFor="let expense of ExpenseList"> 
+                  <td>{{expense.item_name}}</td>
+                  <td>{{expense.price}}</td>
+                  <td>{{expense.category['name']}}</td>
+                  <td>{{expense.location}}</td>
+                  <td>{{expense.spend_on}}</td>
+                  
+                  <td>
+                    <a class="pr-2" routerLink="/Report/{{expense.id}}" href="#"> <button type="button" class="btn btn-primary"> View</button> </a>
+                </td>
+                 </tr> 
+              </tbody> 
+           </table> 
+        </div> 
+     </div> 
+  </div> 
+</div>
+
+

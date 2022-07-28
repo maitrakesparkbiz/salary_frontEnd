@@ -1,0 +1,77 @@
+<!-- Page Content --> 
+<div class="container"> 
+  <div class="row"> 
+   <form [formGroup]="date" method="post">
+      <table>
+         <tr>
+            <td>
+               From Date
+            </td>
+            <td>
+               <input type="date" name="fromDate" id="fromDate" formControlName="fromDate">
+            </td>
+            <td>
+               To Date
+            </td>
+            <td>
+               <input type="date" name="toDate" id="toDate" formControlName="toDate">
+            </td>
+            <td>
+               <button  (click)="onSubmit()" class="btn btn-primary" [disabled]='date.invalid' >Submit</button>
+
+            </td>
+         </tr>
+      </table>
+   </form>
+     <div class="col-lg-12 text-center" style="padding-top: 20px;"> 
+      <table class="table">
+         <tr>
+            <td>
+               Desciption
+            </td>
+            <td>
+               Debit
+            </td>
+            <td>
+               Credit
+            </td>
+         </tr>
+         <tr *ngFor="let data of ExpenseList">
+            <td>
+               {{data.item_name}}
+            </td>
+            <td *ngIf="data.category.id!=4 else isLogOut">
+             <div style="background-color: red;" id="credit">
+               {{data.price}}
+             </div> 
+            </td>
+            <ng-template #isLogOut> 
+               <td></td>
+            <td>
+               <div style="background-color: green;">
+                  {{data.price}}
+               </div>
+            </td>        
+            </ng-template>
+         </tr>
+      </table>
+      <table class="table">
+         <tr>
+            <td>
+
+            </td>
+            <td>
+               {{debittotal}}
+            </td>
+            <td>
+               {{credittotal}}
+            </td>
+         </tr>
+         <tr>
+            <td colspan="3" [ngClass]="total < 0 ? 'red' : 'green'"> {{total < 0?total*-1:total}}</td>
+         </tr>
+      </table>
+ 
+  </div> 
+</div> 
+</div>
