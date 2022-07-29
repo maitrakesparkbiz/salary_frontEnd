@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginServiceService } from './login-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +8,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'expense-manager';
-  constructor(private router:Router){}
+  title = 'Expense Manager';
+  isLogin:boolean;
+  constructor(private router:Router,private loginServiceService:LoginServiceService){}
   ngOnInit(): void {
-      console.log("asd");
       
     if(localStorage.getItem('name'))
     {
-      this.router.navigateByUrl('/Home');
+      this.isLogin =true
     }
-    else
-    {
-      this.router.navigateByUrl('/Login');
+    else{
+      this.loginServiceService.user.subscribe(data=>{
+        this.isLogin=!!data;
+      })
     }
+  }
+
+  logout(){
+    this.isLogin =false;
+    this.router.navigate(['/Logout'])
   }
 }
 

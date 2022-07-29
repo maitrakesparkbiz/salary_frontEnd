@@ -15,6 +15,7 @@ const expenseRoute:Routes= [
   {path:"Report/:id" , canActivate:[AuthGuard], component:AddExpenseComponent},
   {path:"Category" , canActivate:[AuthGuard], component:CategoryComponent},
   {path:"Login" , component:LoginComponent},
+  {path:"Logout" , component:LoginComponent},
 
 ]
 

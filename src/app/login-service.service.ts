@@ -21,4 +21,9 @@ export class LoginServiceService {
     return this.http.post('http://127.0.0.1:8000/api/register',data)
   }
 
+  logout()
+  {
+    this.user.unsubscribe()
+  }
+
 }
