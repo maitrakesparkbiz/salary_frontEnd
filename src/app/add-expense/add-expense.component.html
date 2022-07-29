@@ -23,7 +23,8 @@
         </div> 
         <div class="col" style="text-align: left;"> 
           <input class="form-control" style="width: 50%;"  type="text" name="item_name" id="item_name" [attr.disabled]="canEdit?null:''" formControlName='item_name'>
-        </div>
+          <p style="color: red;" *ngIf="!Expense.get('item_name')?.valid && !Expense.get('item_name')?.untouched"> Please Enter Item Name</p>
+      </div>
         </div> 
         <div class="row"> 
         <div class="col-2" style="text-align: right;">
@@ -31,6 +32,7 @@
         </div> 
         <div class="col" style="text-align: left;"> 
           <input class="form-control" style="width: 50%;" type="text" name="price" id="price" [attr.disabled]="canEdit?null:''" formControlName='price'>
+          <p style="color: red;" *ngIf="!Expense.get('price')?.valid && !Expense.get('price')?.untouched"> Please Enter Valid Amount</p>
         </div> 
         </div> 
         <div class="row"> 
@@ -43,6 +45,7 @@
               {{category.name}}
             </option>
         </select>
+        <p style="color: red;" *ngIf="!Expense.get('category')?.valid && !Expense.get('category')?.untouched"> Please Select Valid  Category</p>
         </div> 
         </div> 
         <div class="row"> 
@@ -51,7 +54,8 @@
         </div> 
         <div class="col" style="text-align: left;"> 
           <input class="form-control" style="width: 50%;" type="text" name="location" id="location" [attr.disabled]="canEdit?null:''" formControlName='location'>
-        </div> 
+          <p style="color: red;" *ngIf="!Expense.get('location')?.valid && !Expense.get('location')?.untouched"> Please Enter Location</p>
+         </div> 
         </div> 
         <div class="row"> 
         <div class="col-2" style="text-align: right;"> 
@@ -59,7 +63,8 @@
         </div> 
         <div class="col" style="text-align: left;"> 
            <input class="form-control" style="width: 50%;" type="date" name="spend_on" id="spend_on" [attr.disabled]="canEdit?null:''" formControlName='spend_on'> 
-        </div> 
+           <p style="color: red;" *ngIf="!Expense.get('spend_on')?.valid && !Expense.get('spend_on')?.untouched"> Please Enter Spend On Date</p>
+         </div> 
         </div> 
      </div> 
      </form>

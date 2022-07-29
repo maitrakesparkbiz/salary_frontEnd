@@ -21,6 +21,8 @@
         </div> 
         <div class="col" style="text-align: left;"> 
           <input class="form-control" style="width: 50%;" type="text" name="name" id="name" formControlName='name'>
+          <p style="color: red;" *ngIf="!categoryName.get('name')?.valid && !categoryName.get('name')?.untouched"> Please Enter Category Name</p>
+
         </div>
        </div>
      </div> 

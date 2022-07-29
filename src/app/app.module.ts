@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoryComponent } from './category/category.component';
 import { DataTablesModule } from 'angular-datatables';
 import { LoginComponent } from './login/login.component';
+import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    DataTablesModule
+    DataTablesModule,
+    ToastNoAnimationModule.forRoot(), // ToastrModule added
     
   ],
   providers: [],

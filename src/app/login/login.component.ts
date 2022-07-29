@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { map, Observable } from "rxjs";
 import { LoginServiceService } from '../login-service.service';
 
@@ -11,7 +12,7 @@ import { LoginServiceService } from '../login-service.service';
 })
 export class LoginComponent implements OnInit {
   isLoginMode!:Boolean
-  constructor(private loginServiceService:LoginServiceService,private router:Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private toastrService: ToastrService,private loginServiceService:LoginServiceService,private router:Router, private activatedRoute: ActivatedRoute) { }
   token!:any;
   ngOnInit(): void {
     this.activatedRoute.url.subscribe((url) => {
@@ -28,10 +29,16 @@ export class LoginComponent implements OnInit {
         
         if(!!responseData)
         {
-          this.loginServiceService.user.next(responseData);
-          this.token = Object.values(responseData['token']);
-          this.router.navigateByUrl('/Home');
-          localStorage.setItem('name', this.token);
+
+            this.loginServiceService.user.next(responseData);
+            this.token = Object.values(responseData['token']);
+            this.router.navigateByUrl('/Home');
+            localStorage.setItem('name', this.token);
+            this.toastrService.success('successfully Login');
+          
+        }
+        else{
+          this.toastrService.error('Invalid Email or Password');
         }
       })
     
@@ -40,6 +47,17 @@ export class LoginComponent implements OnInit {
     {
       this.loginServiceService.register(form.value).subscribe(responseData=>{
         this.isLoginMode=!this.isLoginMode;
+                  console.log(responseData);
+          
+          if(responseData==23000)
+          {
+
+            this.toastrService.error('Email already Exists');
+          }
+          else
+          {
+            this.toastrService.success('successfully Register');
+          }
         
       })
     }
@@ -61,5 +79,6 @@ export class LoginComponent implements OnInit {
    })
     localStorage.removeItem('name');
     this.router.navigateByUrl('/Login')
+    this.toastrService.success(' Logout Successfully');
   }
 }
