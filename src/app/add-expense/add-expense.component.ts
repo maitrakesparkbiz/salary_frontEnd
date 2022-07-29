@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ExpenseEntryService } from '../expense-entry.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class AddExpenseComponent implements OnInit {
   editButtonString!:String
   Data!:any;
   canEdit!:boolean;
-  constructor(private router: Router, private route: ActivatedRoute,private fb: UntypedFormBuilder,private expenseEntryService:ExpenseEntryService,private activatedRoute: ActivatedRoute){
+  constructor(private toastrService:ToastrService, private router: Router, private route: ActivatedRoute,private fb: UntypedFormBuilder,private expenseEntryService:ExpenseEntryService,private activatedRoute: ActivatedRoute){
     this.activatedRoute.params.subscribe((url) => {
       this.ExpenseID =url['id'];
       
@@ -42,6 +43,9 @@ export class AddExpenseComponent implements OnInit {
       this.editButtonString="Edit"
       this.expenseEntryService.get(this.ExpenseID).subscribe(
         (responseData) => {
+          if(!!responseData){
+
+          
           const data=Object.values(responseData);
           let currentDate = formatDate(new Date(), 'YYYY-MM-dd', 'en-US')
           let oldDate = formatDate(data[6], 'YYYY-MM-dd', 'en-US');
@@ -54,7 +58,10 @@ export class AddExpenseComponent implements OnInit {
           this.Expense.get('category')!.setValue(data[3]);
           this.Expense.get('location')!.setValue(data[4]);
           this.Expense.get('spend_on')!.setValue(data[5]);
-
+          }
+          else{
+            this.toastrService.error('Something went wronge');
+          }
         
       })
       
@@ -81,7 +88,15 @@ export class AddExpenseComponent implements OnInit {
 
     this.expenseEntryService.add(this.Expense.value).subscribe(
       (responseData) => {
-        this.router.navigate(['/Report'])
+
+        if(!!responseData)
+        {
+          this.router.navigate(['/Report'])
+        }
+        else
+        {
+          this.toastrService.error('Something went wronge');
+        }
       })
   }
 
@@ -89,7 +104,14 @@ export class AddExpenseComponent implements OnInit {
   {
     this.expenseEntryService.add(this.Expense.value).subscribe(
       (responseData) => {
-
+        if(!!responseData)
+        {
+          this.router.navigate(['/Report'])
+        }
+        else
+        {
+          this.toastrService.error('Something went wronge');
+        }
       })
   }
   

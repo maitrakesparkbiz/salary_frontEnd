@@ -12,7 +12,7 @@ import { ExpenseEntryService } from '../expense-entry.service';
 export class CategoryComponent implements OnInit {
 
   categoryName!:UntypedFormGroup
-  constructor(private router: Router,private expenseEntryService:ExpenseEntryService,private fb:UntypedFormBuilder,) { }
+  constructor(private toastrService:ToastrService,private router: Router,private expenseEntryService:ExpenseEntryService,private fb:UntypedFormBuilder,) { }
 
   ngOnInit(): void {
     this.categoryName = this.fb.group({
@@ -23,7 +23,14 @@ export class CategoryComponent implements OnInit {
 
   onSubmit(){
     this.expenseEntryService.categoryAdd(this.categoryName.value).subscribe((responseData) => {
-      this.router.navigate(['/Home'])
+      if(!!responseData)
+      {
+        this.router.navigate(['/Home'])
+      }
+      else
+      {
+        this.toastrService.error('Something went wronge');
+      }
       
     })
   }
