@@ -1,8 +1,8 @@
-import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { ExpenseEntryService } from '../expense-entry.service';
+import {formatDate} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {ExpenseEntryService} from '../expense-entry.service';
 
 @Component({
   selector: 'app-expense-entry',
@@ -31,11 +31,11 @@ export class ExpenseEntryComponent implements OnInit {
     const data = {"currentData":formatDate(currentDate, 'MM', 'en-US')};
     this.expenseEntryService.list(data).subscribe((responseData) => {
       this.ExpenseList=responseData;
-      
+
       let data= Object.values(responseData)
       for (let i = 0; i < data.length; i++) {
         if(data[i].category.id==4)
-        { 
+        {
           this.total+=data[i].price
           this.credittotal+=data[i].price
         }
@@ -44,24 +44,24 @@ export class ExpenseEntryComponent implements OnInit {
           this.total-=data[i].price
           this.debittotal+=data[i].price
         }
-        
+
       }
-      
+
     })
   }
-  
+
   onSubmit()
-  {    
+  {
     this.total=0;
     this.credittotal=0;
     this.debittotal=0;
     this.expenseEntryService.list(this.date.value).subscribe((responseData) => {
       this.ExpenseList=responseData;
-      
+
       let data= Object.values(responseData)
       for (let i = 0; i < data.length; i++) {
         if(data[i].category.id==4)
-        { 
+        {
           this.total+=data[i].price
           this.credittotal+=data[i].price
         }
@@ -70,14 +70,14 @@ export class ExpenseEntryComponent implements OnInit {
           this.total-=data[i].price
           this.debittotal+=data[i].price
         }
-        
+
       }
-      
+
     })
-   
+
   }
 
   }
-  
+
 
 

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { ExpenseEntryService } from '../expense-entry.service';
+import {Component, OnInit} from '@angular/core';
+import {ToastrService} from 'ngx-toastr';
+import {ExpenseEntryService} from '../expense-entry.service';
 
 @Component({
   selector: 'app-expense-list',
@@ -9,7 +9,7 @@ import { ExpenseEntryService } from '../expense-entry.service';
 })
 export class ExpenseListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
-  constructor(private toastrService:ToastrService ,private expenseEntryService:ExpenseEntryService) { 
+  constructor(private toastrService:ToastrService ,private expenseEntryService:ExpenseEntryService) {
 
   }
   ExpenseList!:any

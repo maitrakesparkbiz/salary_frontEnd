@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoginServiceService } from './login-service.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {LoginServiceService} from './login-service.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
   isLogin:boolean;
   constructor(private router:Router,private loginServiceService:LoginServiceService){}
   ngOnInit(): void {
-      
+
     if(localStorage.getItem('name'))
     {
       this.isLogin =true

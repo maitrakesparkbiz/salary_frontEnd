@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ForloopComponent } from './forloop.component';
+import {ForloopComponent} from './forloop.component';
 
 describe('ForloopComponent', () => {
   let component: ForloopComponent;

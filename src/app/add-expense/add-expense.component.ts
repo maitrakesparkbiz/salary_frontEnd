@@ -1,9 +1,9 @@
-import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { ExpenseEntryService } from '../expense-entry.service';
+import {formatDate} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {ExpenseEntryService} from '../expense-entry.service';
 
 @Component({
   selector: 'app-add-expense',
@@ -20,18 +20,18 @@ export class AddExpenseComponent implements OnInit {
   constructor(private toastrService:ToastrService, private router: Router, private route: ActivatedRoute,private fb: UntypedFormBuilder,private expenseEntryService:ExpenseEntryService,private activatedRoute: ActivatedRoute){
     this.activatedRoute.params.subscribe((url) => {
       this.ExpenseID =url['id'];
-      
+
     });
-    
+
    }
-   
+
   ngOnInit(): void {
     this.expenseEntryService.categoryList().subscribe((responseData)=>{
       this.CategoryList = responseData;
-      
+
     })
     if(this.ExpenseID)
-    { 
+    {
       this.Expense = this.fb.group({
       item_name: ['', Validators.required],
       price: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
@@ -45,13 +45,13 @@ export class AddExpenseComponent implements OnInit {
         (responseData) => {
           if(!!responseData){
 
-          
+
           const data=Object.values(responseData);
           let currentDate = formatDate(new Date(), 'YYYY-MM-dd', 'en-US')
           let oldDate = formatDate(data[6], 'YYYY-MM-dd', 'en-US');
 
           this.canEdit=currentDate==oldDate?true:false;
-          
+
           this.Expense.get('id')!.setValue(data[0]);
           this.Expense.get('item_name')!.setValue(data[1]);
           this.Expense.get('price')!.setValue(data[2]);
@@ -62,12 +62,12 @@ export class AddExpenseComponent implements OnInit {
           else{
             this.toastrService.error('Something went wronge');
           }
-        
+
       })
-      
+
     }
     else
-    { 
+    {
 
       this.canEdit=true;
       this.Expense = this.fb.group({
@@ -114,7 +114,7 @@ export class AddExpenseComponent implements OnInit {
         }
       })
   }
-  
+
   ondelete(ExpenseID:number){
 
     this.expenseEntryService.delete(ExpenseID).subscribe(

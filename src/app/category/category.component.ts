@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { ExpenseEntryService } from '../expense-entry.service';
+import {Component, OnInit} from '@angular/core';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {ExpenseEntryService} from '../expense-entry.service';
 
 @Component({
   selector: 'app-category',
@@ -31,7 +31,7 @@ export class CategoryComponent implements OnInit {
       {
         this.toastrService.error('Something went wronge');
       }
-      
+
     })
   }
 }

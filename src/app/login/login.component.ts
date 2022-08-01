@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { map, Observable } from "rxjs";
-import { LoginServiceService } from '../login-service.service';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {LoginServiceService} from '../login-service.service';
 
 @Component({
   selector: 'app-login',
@@ -23,10 +22,10 @@ export class LoginComponent implements OnInit {
   }
   onSubmit(form:NgForm){
 
-    
+
     if(this.isLoginMode){
       this.loginServiceService.login(form.value).subscribe((responseData:any)=>{
-        
+
         if(!!responseData)
         {
 
@@ -35,20 +34,20 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl('/Home');
             localStorage.setItem('name', this.token);
             this.toastrService.success('successfully Login');
-          
+
         }
         else{
           this.toastrService.error('Invalid Email or Password');
         }
       })
-    
+
     }
     else
     {
       this.loginServiceService.register(form.value).subscribe(responseData=>{
         this.isLoginMode=!this.isLoginMode;
                   console.log(responseData);
-          
+
           if(responseData==23000)
           {
 
@@ -58,19 +57,19 @@ export class LoginComponent implements OnInit {
           {
             this.toastrService.success('successfully Register');
           }
-        
+
       })
     }
-     
+
     form.reset();
-    
+
   }
 
   onSwitchMode()
   {
     this.isLoginMode=!this.isLoginMode;
   }
-  
+
   logout()
   {
    this.loginServiceService.user.subscribe(responseData=>{

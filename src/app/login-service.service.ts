@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class LoginServiceService {
   user = new Subject<any>();
   public isAdmin = new BehaviorSubject<boolean>(false);
   constructor(private http : HttpClient) { }
-  
+
 
   login(data:object)
   {
