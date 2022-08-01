@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {retry} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ExpenseEntryService {
     return this.http.post('http://127.0.0.1:8000/api/add',data);
   }
   list(data:any){
-    return this.http.post('http://127.0.0.1:8000/api/list',data);
+    return this.http.post('http://127.0.0.1:8000/api/list',data).pipe( retry(3));
   }
 
   get(id:number){
