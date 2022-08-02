@@ -14,8 +14,10 @@ const expenseRoute:Routes= [
   {path:"Add" , canActivate:[AuthGuard], component:AddExpenseComponent},
   {path:"Report/:id" , canActivate:[AuthGuard], component:AddExpenseComponent},
   {path:"Category" , canActivate:[AuthGuard], component:CategoryComponent},
-  {path:"Login" , component:LoginComponent},
-  {path:"Logout" , component:LoginComponent},
+  // {path:"Login" , component:LoginComponent},
+  // {path:"Logout" , component:LoginComponent},
+
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
 
 ]
 

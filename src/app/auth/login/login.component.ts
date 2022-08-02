@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ToastrService} from 'ngx-toastr';
-import {LoginServiceService} from '../login-service.service';
+import { Component, OnInit } from '@angular/core';
+import {ToastrService} from "ngx-toastr";
+import {LoginServiceService} from "../../login-service.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -15,10 +15,10 @@ export class LoginComponent implements OnInit {
   token!:any;
   ngOnInit(): void {
     this.activatedRoute.url.subscribe((url) => {
-      if(url[0].path=="Logout"){
+      if(url[0].path=="logout"){
         this.logout()
       }
-   })
+    })
   }
   onSubmit(form:NgForm){
 
@@ -29,11 +29,11 @@ export class LoginComponent implements OnInit {
         if(!!responseData)
         {
 
-            this.loginServiceService.user.next(responseData);
-            this.token = Object.values(responseData['token']);
-            this.router.navigateByUrl('/Home');
-            localStorage.setItem('name', this.token);
-            this.toastrService.success('successfully Login');
+          this.loginServiceService.user.next(responseData);
+          this.token = Object.values(responseData['token']);
+          this.router.navigateByUrl('/Home');
+          localStorage.setItem('name', this.token);
+          this.toastrService.success('successfully Login');
 
         }
         else{
@@ -47,15 +47,14 @@ export class LoginComponent implements OnInit {
       this.loginServiceService.register(form.value).subscribe(responseData=>{
         this.isLoginMode=!this.isLoginMode;
 
-          if(responseData==23000)
-          {
-
-            this.toastrService.error('Email already Exists');
-          }
-          else
-          {
-            this.toastrService.success('successfully Register');
-          }
+        if(responseData==23000)
+        {
+          this.toastrService.error('Email already Exists');
+        }
+        else
+        {
+          this.toastrService.success('successfully Register');
+        }
 
       })
     }
@@ -71,12 +70,11 @@ export class LoginComponent implements OnInit {
 
   logout()
   {
-   this.loginServiceService.user.subscribe(responseData=>{
-    console.log(responseData);
-     return responseData;
-   })
+    this.loginServiceService.user.subscribe(responseData=>{
+      return responseData;
+    })
     localStorage.removeItem('name');
-    this.router.navigateByUrl('/Login')
+    this.router.navigateByUrl('auth/login')
     this.toastrService.success(' Logout Successfully');
   }
 }

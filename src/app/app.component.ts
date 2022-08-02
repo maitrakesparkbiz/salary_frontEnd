@@ -12,21 +12,23 @@ export class AppComponent implements OnInit{
   isLogin:boolean;
   constructor(private router:Router,private loginServiceService:LoginServiceService){}
   ngOnInit(): void {
-
+    console.log("on")
     if(localStorage.getItem('name'))
     {
       this.isLogin =true
     }
     else{
       this.loginServiceService.user.subscribe(data=>{
-        this.isLogin=!!data;
+        if(!!data){
+          this.isLogin=true;
+        }
       })
     }
   }
 
   logout(){
     this.isLogin =false;
-    this.router.navigate(['/Logout'])
+    this.router.navigate(['auth/logout'])
   }
 }
 
