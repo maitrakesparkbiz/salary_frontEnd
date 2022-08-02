@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit {
   logout()
   {
    this.loginServiceService.user.subscribe(responseData=>{
-    console.log(responseData);
      return responseData;
    })
     localStorage.removeItem('name');

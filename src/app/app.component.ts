@@ -12,7 +12,6 @@ export class AppComponent implements OnInit{
   isLogin:boolean;
   constructor(private router:Router,private loginServiceService:LoginServiceService){}
   ngOnInit(): void {
-    console.log("on")
     if(localStorage.getItem('name'))
     {
       this.isLogin =true
