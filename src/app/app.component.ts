@@ -23,6 +23,10 @@ export class AppComponent implements OnInit{
         }
       })
     }
+    if(localStorage.getItem('name'))
+    {
+      this.router.navigateByUrl('/Home');
+    }
   }
 
   logout(){
