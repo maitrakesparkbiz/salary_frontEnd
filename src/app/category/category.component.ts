@@ -16,7 +16,7 @@ export class CategoryComponent implements OnInit {
   constructor(private toastrService:ToastrService,private router: Router,private expenseEntryService:ExpenseEntryService,private fb:UntypedFormBuilder,) { }
 
   ngOnInit(): void {
-    this.expenseEntryService.categoryList().subscribe((responseData)=>{
+    this.expenseEntryService.categoryList(0).subscribe((responseData)=>{
       this.CategoryList = responseData;
 
     })

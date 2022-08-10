@@ -29,7 +29,7 @@ export class ExpenseEntryService {
   categoryAdd(data:any){
     return this.http.post('http://127.0.0.1:8000/api/category/add',data);
   }
-  categoryList(){
-    return this.http.get('http://127.0.0.1:8000/api/category');
+  categoryList(id:number){
+    return this.http.get('http://127.0.0.1:8000/api/category/'+id);
   }
 }

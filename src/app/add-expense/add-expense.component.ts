@@ -17,6 +17,7 @@ export class AddExpenseComponent implements OnInit {
   editButtonString!:String
   Data!:any;
   canEdit!:boolean;
+  ChildCategoryList:any;
   constructor(private toastrService:ToastrService, private router: Router, private route: ActivatedRoute,private fb: UntypedFormBuilder,private expenseEntryService:ExpenseEntryService,private activatedRoute: ActivatedRoute){
     this.activatedRoute.params.subscribe((url) => {
       this.ExpenseID =url['id'];
@@ -26,7 +27,7 @@ export class AddExpenseComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.expenseEntryService.categoryList().subscribe((responseData)=>{
+    this.expenseEntryService.categoryList(0).subscribe((responseData)=>{
       this.CategoryList = responseData;
 
     })
@@ -36,6 +37,7 @@ export class AddExpenseComponent implements OnInit {
       item_name: ['', Validators.required],
       price: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
       category: ['', Validators.required],
+      childCategory: ['', Validators.required],
       location: ['', Validators.required],
       spend_on: ['', Validators.required],
       id: ['', Validators.required],
@@ -121,6 +123,13 @@ export class AddExpenseComponent implements OnInit {
       (responseData) => {
         this.router.navigate(['/Report'])
       })
+  }
+  onselect(element:any)
+  {
+    this.expenseEntryService.categoryList(element.target.value).subscribe((responseData)=>{
+      this.ChildCategoryList = responseData     
+    })
+    
   }
 
 }
