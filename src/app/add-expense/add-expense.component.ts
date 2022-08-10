@@ -53,11 +53,13 @@ export class AddExpenseComponent implements OnInit {
           let oldDate = formatDate(data[6], 'YYYY-MM-dd', 'en-US');
 
           this.canEdit=currentDate==oldDate?true:false;
-
+          this.expenseEntryService.categoryList(data[3]).subscribe((responseData)=>{
+              this.Expense.get('category')!.setValue(Object.values(responseData)[0].parent.id);
+              this.onselect(data[3])
+          })
           this.Expense.get('id')!.setValue(data[0]);
           this.Expense.get('item_name')!.setValue(data[1]);
           this.Expense.get('price')!.setValue(data[2]);
-          this.Expense.get('category')!.setValue(data[3]);
           this.Expense.get('location')!.setValue(data[4]);
           this.Expense.get('spend_on')!.setValue(data[5]);
           }
@@ -126,9 +128,21 @@ export class AddExpenseComponent implements OnInit {
   }
   onselect(element:any)
   {
-    this.expenseEntryService.categoryList(element.target.value).subscribe((responseData)=>{
-      this.ChildCategoryList = responseData     
-    })
+
+    if(typeof element == "string")
+    {
+      this.expenseEntryService.categoryList(parseInt(element)).subscribe((responseData)=>{
+        this.ChildCategoryList = responseData     
+        this.Expense.get('childCategory')!.setValue(Object.values(responseData)[0].id);
+      });
+    }
+    else
+    {
+      this.expenseEntryService.categoryList(element.target.value).subscribe((responseData)=>{
+        this.ChildCategoryList = responseData     
+      })
+    }
+    
     
   }
 

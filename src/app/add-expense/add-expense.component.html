@@ -67,7 +67,7 @@
                   </div>
                   <div class="col" style="text-align: left;">
                      <select class="form-control" style="width: 50%;" name="category" id="category"
-                        formControlName='category'>
+                        formControlName='childCategory'>
                         <option *ngFor="let category of ChildCategoryList" [attr.disabled]="canEdit?null:''"
                            [value]="category.id">
                            {{category.name}}
