@@ -52,6 +52,8 @@
                {{data.price}}
              </div> 
             </td>
+            <td *ngIf="data.category.name!='Credit'"> 
+              </td>
             <ng-template #isLogOut> 
                <td></td>
             <td>
