@@ -47,7 +47,7 @@
             <td>
                {{data.item_name}}
             </td>
-            <td *ngIf="data.category.id!=4 else isLogOut">
+            <td *ngIf="data.category.name!='Credit' else isLogOut">
              <div style="background-color: red;">
                {{data.price}}
              </div> 
