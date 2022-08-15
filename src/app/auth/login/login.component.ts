@@ -15,7 +15,7 @@ import {  userData } from 'src/app/counter.actions';
 export class LoginComponent implements OnInit {
   isLoginMode!:Boolean
   count$: Observable<string>;
-  data$!: Observable<any>;
+  data$!: Observable<Object>;
   constructor(private store: Store<{ count: string }>,private toastrService: ToastrService,private loginServiceService:LoginServiceService,private router:Router, private activatedRoute: ActivatedRoute) { 
     this.count$ = store.select('count');
   }
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         {
           this.store.dispatch(userData({user:responseData}));
           this.data$ = this.store.select('count')
-          console.log(this.data$);
+          // console.log(this.data$);
           this.loginServiceService.user.next(responseData);
           this.token = Object.values(responseData['token']);
           this.router.navigateByUrl('/Home');
@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
     })
     this.store.dispatch(userData({user:""}));
     this.data$ = this.store.select('count')
-    console.log(this.data$);
+    // console.log(this.data$);
     localStorage.removeItem('name');
     this.router.navigateByUrl('auth/login')
     this.toastrService.success(' Logout Successfully');
