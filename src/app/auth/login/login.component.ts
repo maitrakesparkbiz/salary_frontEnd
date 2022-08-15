@@ -3,6 +3,9 @@ import {ToastrService} from "ngx-toastr";
 import {LoginServiceService} from "../../login-service.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import {  userData } from 'src/app/counter.actions';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +14,18 @@ import {NgForm} from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
   isLoginMode!:Boolean
-  constructor(private toastrService: ToastrService,private loginServiceService:LoginServiceService,private router:Router, private activatedRoute: ActivatedRoute) { }
+  count$: Observable<string>;
+  data$!: Observable<any>;
+  constructor(private store: Store<{ count: string }>,private toastrService: ToastrService,private loginServiceService:LoginServiceService,private router:Router, private activatedRoute: ActivatedRoute) { 
+    this.count$ = store.select('count');
+  }
   token!:any;
   ngOnInit(): void {
     this.activatedRoute.url.subscribe((url) => {
       if(url[0].path=="logout"){
         this.logout()
       }
-    })
+    })        
   }
   onSubmit(form:NgForm){
 
@@ -28,7 +35,9 @@ export class LoginComponent implements OnInit {
 
         if(!!responseData)
         {
-
+          this.store.dispatch(userData({user:responseData}));
+          this.data$ = this.store.select('count')
+          console.log(this.data$);
           this.loginServiceService.user.next(responseData);
           this.token = Object.values(responseData['token']);
           this.router.navigateByUrl('/Home');
@@ -73,6 +82,9 @@ export class LoginComponent implements OnInit {
     this.loginServiceService.user.subscribe(responseData=>{
       return responseData;
     })
+    this.store.dispatch(userData({user:""}));
+    this.data$ = this.store.select('count')
+    console.log(this.data$);
     localStorage.removeItem('name');
     this.router.navigateByUrl('auth/login')
     this.toastrService.success(' Logout Successfully');

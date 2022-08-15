@@ -15,6 +15,8 @@ import {CategoryComponent} from './category/category.component';
 import {DataTablesModule} from 'angular-datatables';
 import {LoginComponent} from './login/login.component';
 import {ToastNoAnimationModule} from 'ngx-toastr';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './counter.reducer';
 
 
 @NgModule({
@@ -37,7 +39,7 @@ import {ToastNoAnimationModule} from 'ngx-toastr';
     ReactiveFormsModule,
     DataTablesModule,
     ToastNoAnimationModule.forRoot(), // ToastrModule added
-
+    StoreModule.forRoot({count: counterReducer}), 
   ],
   providers: [],
   bootstrap: [AppComponent]
