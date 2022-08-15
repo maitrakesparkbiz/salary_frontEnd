@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { logout } from './counter.actions';
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
   title = 'Expense Manager';
   isLogin:boolean;
   count$: Observable<string>;
-  constructor(private store: Store<{ count: string }>,private router:Router,private loginServiceService:LoginServiceService){
+  constructor(private store: Store<{ count: string }>,private activatedRoute: ActivatedRoute,private router:Router,private loginServiceService:LoginServiceService){
     this.count$ = store.select('count');
   }
   ngOnInit(): void {
@@ -29,6 +29,12 @@ export class AppComponent implements OnInit{
         }
       })
     }
+    this.activatedRoute.url.subscribe((url) => {
+      if(url[0].path=="")
+      {
+        this.router.navigate(['auth/login'])
+      }
+    }) 
     if(localStorage.getItem('name'))
     {
       this.router.navigateByUrl('/Home');
