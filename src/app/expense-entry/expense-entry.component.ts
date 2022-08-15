@@ -60,7 +60,7 @@ export class ExpenseEntryComponent implements OnInit {
 
       let data= Object.values(responseData)
       for (let i = 0; i < data.length; i++) {
-        if(data[i].category.id==4)
+        if(data[i].category.name=='Credit')
         {
           this.total+=data[i].price
           this.credittotal+=data[i].price
