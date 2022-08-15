@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
 
         if(!!responseData)
         {
+          console.log(typeof responseData);
+          
           this.store.dispatch(userData({user:responseData}));
           this.data$ = this.store.select('count')
           // console.log(this.data$);
@@ -82,7 +84,7 @@ export class LoginComponent implements OnInit {
     this.loginServiceService.user.subscribe(responseData=>{
       return responseData;
     })
-    this.store.dispatch(userData({user:""}));
+    this.store.dispatch(userData({user:{}}));
     this.data$ = this.store.select('count')
     // console.log(this.data$);
     localStorage.removeItem('name');
