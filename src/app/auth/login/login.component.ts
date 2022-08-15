@@ -88,6 +88,7 @@ export class LoginComponent implements OnInit {
     this.data$ = this.store.select('count')
     // console.log(this.data$);
     localStorage.removeItem('name');
+    localStorage.clear();
     this.router.navigateByUrl('auth/login')
     this.toastrService.success(' Logout Successfully');
   }
