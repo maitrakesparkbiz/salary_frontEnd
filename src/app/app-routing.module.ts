@@ -9,18 +9,13 @@ import {AuthGuard} from './login/auth.guard';
 import {LoginComponent} from './login/login.component';
 
 const expenseRoute:Routes= [
-  { path:'',component:AppComponent},
+  {path:'',component:AppComponent},
   {path:"Home" , canActivate:[AuthGuard], component:ExpenseEntryComponent},
   {path:"Report" , canActivate:[AuthGuard], component:ExpenseListComponent},
   {path:"Add" , canActivate:[AuthGuard], component:AddExpenseComponent},
   {path:"Report/:id" , canActivate:[AuthGuard], component:AddExpenseComponent},
   {path:"Category" , canActivate:[AuthGuard], component:CategoryComponent},
-
-  // {path:"Login" , component:LoginComponent},
-  // {path:"Logout" , component:LoginComponent},
-
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-
 ]
 
 @NgModule({
